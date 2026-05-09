@@ -65,3 +65,38 @@ O Helper-Script faz isso via `helper.sh` + scripts bash. Precisamos do equivalen
 | `Maurer-Script/scripts/guppy-update.sh` | ❌ Ainda do Helper-Script |
 | `Maurer-Script/assets/beep.mp3` | ❌ Ainda do Helper-Script |
 | `Helper-Script/timelapse.cfg` | ⚠️ Mantido intencionalmente (biblioteca terceiros) |
+
+---
+
+## Melhorias de configuração identificadas
+
+### 1. `max_accel_to_decel` — NÃO alterar — `printer.cfg`
+- **Estado**: ~~deprecated~~ — **confirmado activo no fork Creality**
+- **Motivo**: o `toolhead.py` do V1.3.3.5 usa `requested_accel_to_decel` internamente para o sistema **Qmode** (Silent/Standard/Ultrafast). Remover quebraria os modos de velocidade.
+- **Acção**: ❌ não fazer nada — manter `max_accel_to_decel: 12000`
+
+### 2. `[idle_timeout]` sem valor — `printer.cfg`
+- **Problema**: `timeout` comentado → default 600s (10 min), motores desligam em pausas longas
+- **Ficheiro**: `config/printer.cfg` → secção `[idle_timeout]`
+- **O que fazer**:
+  - [ ] Definir `timeout: 1800` (30 min)
+
+### 3. `HEAT_SOAK TIME=180` hardcoded — `Start_Print_Heat_Soak.cfg`
+- **Problema**: tempo de soak fixo em 3 min para todos os filamentos
+- **Ficheiro**: `config/Maurer-Script/KAMP/Start_Print_Heat_Soak.cfg` → macro `START_PRINT`
+- **O que fazer**:
+  - [ ] Ler parâmetro `SOAK_TIME` do slicer: `{% set soak_time = params.SOAK_TIME|default(180)|int %}`
+  - [ ] Substituir `HEAT_SOAK TEMP={bed_temp} TIME=180` → `HEAT_SOAK TEMP={bed_temp} TIME={soak_time}`
+  - [ ] Atualizar start G-code do slicer: `START_PRINT ... SOAK_TIME=300`
+
+### 4. `verify_heater extruder` — `check_gain_time` curto — `printer.cfg`
+- **Problema**: `check_gain_time: 30` pode gerar falso `heating_too_slow` com blocos de alta massa (volcano, CHT)
+- **Ficheiro**: `config/printer.cfg` → secção `[verify_heater extruder]`
+- **O que fazer**:
+  - [ ] Considerar aumentar para `check_gain_time: 40` como margem de segurança
+
+### 5. `M141` — lógica de fan1 pode deixar fan ligado — `fans-control.cfg`
+- **Problema**: quando slicer chama `M141 S0` com chamber_fan já girando por outra razão, fan1 fica ligado indefinidamente
+- **Ficheiro**: `config/Maurer-Script/fans-control.cfg` → macro `M141`
+- **O que fazer**:
+  - [ ] Revisar lógica: ligar fan1 apenas se `S > 0` e desligar explicitamente quando `S == 0`
