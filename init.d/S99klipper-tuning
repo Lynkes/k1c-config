@@ -1,0 +1,100 @@
+#!/bin/sh
+# K1C Klipper Performance Tuning
+# Maurer — CPU affinity, renice, IRQ affinity, serviços desnecessários
+# Deploy: /etc/init.d/S99klipper-tuning
+
+apply_tuning() {
+    # ── 1. Serviços desnecessários ────────────────────────────────────────────
+    # ifplugd: monitoriza eth0 — impressora sem porta RJ45
+    killall -q ifplugd
+    # mdns Creality: Moonraker tem mDNS próprio
+    killall -q mdns
+
+    # ── 2. CPU affinity ───────────────────────────────────────────────────────
+    # taskset não disponível neste BusyBox — usa Python (os.sched_setaffinity)
+    PYTHON=/usr/share/klippy-env/bin/python
+    set_affinity() {
+        local PID=$1 CPUS=$2
+        $PYTHON -c "import os; os.sched_setaffinity($PID, {$CPUS})" 2>/dev/null
+    }
+
+    # Klipper (Python + chelper) → core 1 exclusivo
+    KLIPPER_PID=$(pgrep -f klippy.py | head -1)
+    KLMCU_PID=$(pgrep -x klipper_mcu | head -1)
+    if [ -n "$KLIPPER_PID" ]; then
+        set_affinity "$KLIPPER_PID" 1
+        # Prioridade mais alta: preempta outros processos
+        renice -n -10 -p "$KLIPPER_PID" 2>/dev/null
+    fi
+    [ -n "$KLMCU_PID" ] && set_affinity "$KLMCU_PID" 1
+
+    # Moonraker, nginx, GuppyScreen, go2rtc → core 0
+    for PROC in moonraker.py nginx guppyscreen go2rtc; do
+        PID=$(pgrep -f "$PROC" | head -1)
+        [ -n "$PID" ] && set_affinity "$PID" 0
+    done
+
+    # Processos de baixa prioridade → core 0 + nice alto
+    for PROC in wpa_supplicant ntpd udhcpc syslogd klogd; do
+        PID=$(pgrep -x "$PROC" | head -1)
+        if [ -n "$PID" ]; then
+            set_affinity "$PID" 0
+            renice -n 10 -p "$PID" 2>/dev/null
+        fi
+    done
+
+    # ── 3. IRQ affinity: UARTs dos MCUs → core 1 ─────────────────────────────
+    # core 1 = bitmask 0x2
+    # K1C: uart1=nozzle_mcu(ttyS1), uart7=mcu(ttyS7), uart9=leveling_mcu(ttyS9)
+    for UART in "uart1$" "uart7$" "uart9$"; do
+        while IFS= read -r LINE; do
+            IRQ=$(echo "$LINE" | awk -F: '{print $1}' | tr -d ' ')
+            [ -n "$IRQ" ] && echo 2 > /proc/irq/"$IRQ"/smp_affinity 2>/dev/null
+        done <<EOF
+$(grep -E "$UART" /proc/interrupts 2>/dev/null)
+EOF
+    done
+
+    # ── 4. VM / memória ───────────────────────────────────────────────────────
+    # Não usar swap a não ser que seja absolutamente necessário
+    echo 0 > /proc/sys/vm/swappiness 2>/dev/null
+    # Desabilita Transparent Huge Pages (causa latência intermitente)
+    [ -f /sys/kernel/mm/transparent_hugepage/enabled ] && \
+        echo never > /sys/kernel/mm/transparent_hugepage/enabled
+
+    echo "K1C tuning applied."
+}
+
+start() {
+    echo "Scheduling K1C Klipper tuning (aguarda serviços subirem)..."
+    # Corre em background após delay para não bloquear o boot
+    # e garantir que o Klipper já inicializou
+    (sleep 20 && apply_tuning) &
+}
+
+stop() {
+    echo "Reverting K1C Klipper tuning..."
+    PYTHON=/usr/share/klippy-env/bin/python
+    for PROC in klippy.py klipper_mcu moonraker.py nginx guppyscreen; do
+        PID=$(pgrep -f "$PROC" | head -1)
+        [ -n "$PID" ] && $PYTHON -c "import os; os.sched_setaffinity($PID, {0, 1})" 2>/dev/null
+    done
+    echo 100 > /proc/sys/vm/swappiness 2>/dev/null
+}
+
+case "$1" in
+    start)   start ;;
+    stop)    stop ;;
+    restart|reload)
+             stop
+             sleep 2
+             start
+             ;;
+    apply)   apply_tuning ;;
+    *)
+        echo "Usage: /etc/init.d/S99klipper-tuning {start|stop|restart|apply}"
+        exit 1
+        ;;
+esac
+
+exit 0

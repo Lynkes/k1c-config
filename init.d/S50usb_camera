@@ -1,0 +1,39 @@
+#!/bin/sh
+# USB Camera Service — go2rtc
+# Maurer — go2rtc v1.9.14+dev (build de source com módulo MJPEG)
+# MJPEG stream: http://<IP>:1984/api/stream.mjpeg?src=k1c
+# Snapshot:     http://<IP>:1984/api/frame.jpeg?src=k1c
+# Web UI:       http://<IP>:1984/stream.html?src=k1c
+
+PIDFILE=/var/run/go2rtc.pid
+CONFIG=/opt/etc/go2rtc.yaml
+GO2RTC=/opt/bin/go2rtc
+
+case "$1" in
+  start)
+    echo "Starting camera (go2rtc)..."
+    killall -q mjpg_streamer cam_app go2rtc
+    sleep 1
+    nice -n 15 "$GO2RTC" -config "$CONFIG" &
+    echo $! > "$PIDFILE"
+    ;;
+  stop)
+    echo "Stopping camera (go2rtc)..."
+    if [ -f "$PIDFILE" ]; then
+      kill "$(cat $PIDFILE)" 2>/dev/null
+      rm -f "$PIDFILE"
+    fi
+    killall -q go2rtc
+    ;;
+  restart|reload)
+    "$0" stop
+    sleep 1
+    "$0" start
+    ;;
+  *)
+    echo "Usage: /etc/init.d/S50usb_camera {start|stop|restart}"
+    exit 1
+    ;;
+esac
+
+exit 0

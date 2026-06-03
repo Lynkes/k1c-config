@@ -1,0 +1,1 @@
+#!/bin/sh\n/opt/etc/init.d/rc.unslung "$1"

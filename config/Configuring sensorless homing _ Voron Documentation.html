@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://docs.vorondesign.com/tuning/sensorless.html -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  <meta http-equiv="X-UA-Compatible" content="IE=Edge"> <link rel="stylesheet" href="./Configuring sensorless homing _ Voron Documentation_files/just-the-docs-default.css"> <link rel="stylesheet" href="./Configuring sensorless homing _ Voron Documentation_files/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet" disabled=""> <style id="jtd-nav-activation"> .site-nav > ul.nav-list:first-child > li > a, .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(3)) > a, .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a { background-image: none; } .site-nav > ul.nav-list:not(:first-child) a, .site-nav li.external a { background-image: none; } .site-nav > ul.nav-list:first-child > li:nth-child(6) > ul > li:nth-child(3) > a { font-weight: 600; text-decoration: none; }.site-nav > ul.nav-list:first-child > li:nth-child(6) > button svg, .site-nav > ul.nav-list:first-child > li:nth-child(6) > ul > li:nth-child(3) > button svg { transform: rotate(-90deg); }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(6) > ul.nav-list, .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(6) > ul.nav-list > li.nav-list-item:nth-child(3) > ul.nav-list { display: block; } </style> <script src="./Configuring sensorless homing _ Voron Documentation_files/lunr.min.js.download"></script> <script src="./Configuring sensorless homing _ Voron Documentation_files/just-the-docs.js.download"></script> <meta name="viewport" content="width=device-width, initial-scale=1"> <link rel="icon" href="https://docs.vorondesign.com/favicon.ico" type="image/x-icon"> <!-- Begin Jekyll SEO tag v2.8.0 --> <title>Configuring sensorless homing | Voron Documentation</title> <meta name="generator" content="Jekyll v3.10.0"> <meta property="og:title" content="Configuring sensorless homing"> <meta property="og:locale" content="en_US"> <meta name="description" content="Voron Official and Community Documentation"> <meta property="og:description" content="Voron Official and Community Documentation"> <link rel="canonical" href="https://docs.vorondesign.com/tuning/sensorless.html"> <meta property="og:url" content="https://docs.vorondesign.com/tuning/sensorless.html"> <meta property="og:site_name" content="Voron Documentation"> <meta property="og:type" content="website"> <meta name="twitter:card" content="summary"> <meta property="twitter:title" content="Configuring sensorless homing"> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","description":"Voron Official and Community Documentation","headline":"Configuring sensorless homing","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://docs.vorondesign.com/images/voron_design_logo.png"}},"url":"https://docs.vorondesign.com/tuning/sensorless.html"}</script> <!-- End Jekyll SEO tag --> </head> <body> <a class="skip-to-main" href="https://docs.vorondesign.com/tuning/sensorless.html#main-content">Skip to main content</a> <svg xmlns="http://www.w3.org/2000/svg" class="d-none"> <symbol id="svg-link" viewBox="0 0 24 24"> <title>Link</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"> <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path> </svg> </symbol> <symbol id="svg-menu" viewBox="0 0 24 24"> <title>Menu</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"> <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line> </svg> </symbol> <symbol id="svg-arrow-right" viewBox="0 0 24 24"> <title>Expand</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"> <polyline points="9 18 15 12 9 6"></polyline> </svg> </symbol> <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE --> <symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"> <title id="svg-external-link-title">(external link)</title> <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line> </symbol> <symbol id="svg-doc" viewBox="0 0 24 24"> <title>Document</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"> <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline> </svg> </symbol> <symbol id="svg-search" viewBox="0 0 24 24"> <title>Search</title> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"> <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line> </svg> </symbol> <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md --> <symbol id="svg-copy" viewBox="0 0 16 16"> <title>Copy</title> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16"> <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"></path> <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"></path> </svg> </symbol> <symbol id="svg-copied" viewBox="0 0 16 16"> <title>Copied</title> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16"> <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"></path> <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"></path> </svg> </symbol> </svg> <header class="side-bar"> <div class="site-header"> <a href="https://docs.vorondesign.com/" class="site-title lh-tight"> <div class="site-logo" role="img" aria-label="Voron Documentation"></div> </a> <button id="menu-button" class="site-button btn-reset" aria-label="Menu" aria-expanded="false"> <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg> </button> </div> <nav aria-label="Main" id="site-nav" class="site-nav"> <ul class="nav-list"><li class="nav-list-item"><a href="https://docs.vorondesign.com/" class="nav-list-link">Voron Documentation</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/about.html" class="nav-list-link">About Voron</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/hardware.html" class="nav-list-link">Choosing a Printer / Extruder</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Sourcing Information submenu" aria-expanded="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="https://docs.vorondesign.com/sourcing.html" class="nav-list-link">Sourcing Information</a><ul class="nav-list"><li class="nav-list-item"><a href="https://docs.vorondesign.com/materials.html" class="nav-list-link">Materials Selection</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/sourcing_faq.html" class="nav-list-link">Sourcing / Buying FAQ</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="The Build submenu" aria-expanded="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="https://docs.vorondesign.com/build/" class="nav-list-link">The Build</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Mechanical Assembly submenu" aria-expanded="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="https://docs.vorondesign.com/build/mechanical/" class="nav-list-link">Mechanical Assembly</a><ul class="nav-list"><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/mechanical/v2_gantry_squaring.html" class="nav-list-link">V2 Gantry Squaring</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Electrical Wiring submenu" aria-expanded="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="https://docs.vorondesign.com/build/electrical/" class="nav-list-link">Electrical Wiring</a><ul class="nav-list"><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/electrical/controller_wiring.html" class="nav-list-link">Controller wiring</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/electrical/mini12864_klipper_guide.html" class="nav-list-link">Mini12864 display</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Software Installation submenu" aria-expanded="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="https://docs.vorondesign.com/build/software/" class="nav-list-link">Software Installation</a><ul class="nav-list"><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/software/installing_mainsail.html" class="nav-list-link">Installing Mainsail</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/software/installing_fluidd.html" class="nav-list-link">Installing Fluidd</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/software/installing_octoprint.html" class="nav-list-link">Installing Octoprint</a></li></ul></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/software/configuration.html" class="nav-list-link">Software Configuration</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/startup/" class="nav-list-link">Initial Startup</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/slicer/" class="nav-list-link">Slicer Setup</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/slicer/first_print.html" class="nav-list-link">First Print</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/software/remote_access.html" class="nav-list-link">Remote access your printer</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/build/software/ssh.html" class="nav-list-link">Ssh Quick Guide</a></li></ul></li><li class="nav-list-item active"><button class="nav-list-expander btn-reset" aria-label="Tuning Guides submenu" aria-expanded="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="https://docs.vorondesign.com/tuning/" class="nav-list-link">Tuning Guides</a><ul class="nav-list"><li class="nav-list-item"><a href="https://docs.vorondesign.com/tuning/secondary_printer_tuning.html" class="nav-list-link">Secondary Printer Tuning</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/tuning/filament_tuning.html" class="nav-list-link">Filament Tuning</a></li><li class="nav-list-item active"><a class="nav-list-link active">Configuring sensorless homing</a></li></ul></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/maintenance.html" class="nav-list-link">Maintenance Guide</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/history.html" class="nav-list-link">Voron History</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Community Documentation submenu" aria-expanded="false"> <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg> </button><a href="https://docs.vorondesign.com/community/" class="nav-list-link">Community Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="https://docs.vorondesign.com/community/howto/" class="nav-list-link">How-To's</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/community/troubleshooting/" class="nav-list-link">Troubleshooting</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/community/electronics/" class="nav-list-link">Alternate Electronics</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/community/macros/" class="nav-list-link">Custom Macros</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/community/video_guides.html" class="nav-list-link">Video Guides</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/community/resources.html" class="nav-list-link">Other Resources</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/community/support/submission_information.html" class="nav-list-link">Community Submission Information</a></li><li class="nav-list-item"><a href="https://docs.vorondesign.com/community/support/pull_request_guide.html" class="nav-list-link">Pull Request Guide</a></li></ul></li></ul> </nav> <div class="d-md-block d-none"> <div class="site-footer"> This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll. </div> </div> </header> <div class="main" id="top"> <div id="main-header" class="main-header"> <div class="search" role="search"> <div class="search-input-wrap"> <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Voron Documentation" autocomplete="off"> <label for="search-input" class="search-label"> <span class="sr-only">Search Voron Documentation</span> <svg viewBox="0 0 24 24" class="search-icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg> </label> </div> <div id="search-results" class="search-results"></div> </div> <nav aria-label="Auxiliary" class="aux-nav"> <ul class="aux-nav-list"> <li class="aux-nav-list-item"> <a href="https://github.com/VoronDesign/Voron-Documentation" class="site-button"> Voron Documentation on GitHub </a> </li> <li class="aux-nav-list-item"> <a href="https://vorondesign.com/" class="site-button"> VoronDesign Home </a> </li> </ul> </nav> </div> <div class="main-content-wrap"> <nav aria-label="Breadcrumb" class="breadcrumb-nav"> <ol class="breadcrumb-nav-list"> <li class="breadcrumb-nav-list-item"><a href="https://docs.vorondesign.com/tuning/">Tuning Guides</a></li> <li class="breadcrumb-nav-list-item"><span>Configuring sensorless homing</span></li> </ol> </nav> <div id="main-content" class="main-content"> <main> <p>This writeup covers how to set up sensorless homing on an Octopus 1.1 with 2209 drivers. Different drivers and/or MCUs may differ. Adjust accordingly.</p> <p>Also note that there are example working configurations at the bottom of this guide. Use them as examples based on your MCU and drivers, etc.</p> <p class="note">IF YOU DO NOT READ THIS CAREFULLY AND ADJUST THINGS WHEN NEEDED YOU WILL BE SAD. IF YOU USE A PHYSICAL ENDSTOP YOU MUST CHANGE MACROS TO HOME Z TO THE ENDSTOP PIN, NOT THE MIDDLE OF THE BED. YOU HAVE BEEN WARNED!</p> <p>At the end of this document is a section with working examples you can use as a reference for some common hardware</p> <h1 id="getting-started"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#getting-started" class="anchor-heading" aria-labelledby="getting-started"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Getting started </h1> <p>Since this example revolves around an Octopus 1.1, you need to verify which diag jumpers to install based on your hardware and motor positions. The examples below serve to illustrate the process.</p> <ol> <li>Power off the printer gracefully</li> <li>Physically disconnect the X and Y endstop connections from the MCU.</li> <li> <p>Plug in jumpers on the <code class="language-plaintext highlighter-rouge">DIAG</code> ports as shown below (<strong>J16</strong> and <strong>J17</strong>). We use these ports since these are the corresponding diag jumpers for where our XY steppers are connected.</p> <p><img src="./Configuring sensorless homing _ Voron Documentation_files/OctoDiag.png" alt="image"></p> </li> <li>Start up the printer and wait for it to boot</li> <li>MAKE A BACKUP OF YOUR CONFIG (or better yet go do <a href="https://docs.vorondesign.com/community/howto/EricZimmerman/BackupConfigToGithub.html">this</a>)</li> </ol> <h2 id="choose-your-own-adventure"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#choose-your-own-adventure" class="anchor-heading" aria-labelledby="choose-your-own-adventure"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Choose your own adventure </h2> <p>Here we come to a choice. Do you want to use stock Klipper and macros to control homing, or do you want to switch to an alternate version of Klipper, named Kalico?</p> <p>The Kalico route will make things simpler from the configuration side, but in the end, your printer will home either way without too much fuss. Pick ONE of the two options below, either Stock Klipper or Kalico.</p> <h3 id="stock-klipper"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#stock-klipper" class="anchor-heading" aria-labelledby="stock-klipper"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stock Klipper </h3> <p>In this path, you will need to download some macros depending on your printer. If you do not have a v0 or a 2.4, you can tweak whichever makes the most sense for you. When in doubt, ask in the Voron Discord channel for your printer</p> <ol> <li>Create a new file in the location of your choosing named <code class="language-plaintext highlighter-rouge">homing.cfg</code></li> <li>Open another browser tab and open <a href="https://github.com/EricZimmerman/Voron24/blob/PreKlippain/macros/helpers/homing.cfg">this</a> page if you have a 2.4, or <a href="https://github.com/EricZimmerman/Voron02/blob/PreKlippain/macros/helpers/homing.cfg">this</a> page if you have a v0.</li> <li>Edit <code class="language-plaintext highlighter-rouge">homing.cfg</code></li> <li><strong>Add</strong> the macro from step 2 to <code class="language-plaintext highlighter-rouge">homing.cfg</code>. <strong><em>Be sure to edit the coordinates as needed for your bed in the Z section (the line that reads **G1 X175 Y175 F15000**). IE to the center of the bed, your endstop pin for z, etc.</em></strong></li> <li>Save <code class="language-plaintext highlighter-rouge">homing.cfg</code></li> <li>Edit your <code class="language-plaintext highlighter-rouge">printer.cfg</code> file</li> <li>If you have a <code class="language-plaintext highlighter-rouge">[safe_z_home]</code> section, find it and comment it out as we will be using homing override as found in <code class="language-plaintext highlighter-rouge">homing.cfg</code>.</li> </ol> <p>The <code class="language-plaintext highlighter-rouge">[homing_override]</code> block we have in the above macros is now going to be responsible for all homing, whether via the buttons in Mainsail or Fluidd, or via commands like G28 X, etc. This override allows us, the end user, to customize how the homing operation happens. When using sensorless, this is important, as it lets us adjust things like the current used for homing, etc. More on this later.</p> <h3 id="kalico-formerly-known-as-danger-klipper"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#kalico-formerly-known-as-danger-klipper" class="anchor-heading" aria-labelledby="kalico-formerly-known-as-danger-klipper"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Kalico (formerly known as Danger Klipper) </h3> <p>Choosing this route means you do not need to do any of the macro stuff as listed above, as we can just simply add a new property in our X and Y driver section to handle homing current. Thats it!</p> <p>If you want to switch to Kalico, now is the time to do so. You can <a href="https://github.com/EricZimmerman/VoronTools/blob/main/Kalico.md">follow this other guide</a> to make the switch! Switching will not make you change anything else about your configuration.</p> <p>Kalico example (from a v0.2, running a Manta 5p, and 2240 drivers):</p> <p>Note how the homing current can be specified without the need for macros, etc. For other examples of Kalico see <a href="https://github.com/EricZimmerman/Voron24/blob/master/config/XY.cfg">here</a> and <a href="https://github.com/EricZimmerman/PandorasBox/blob/main/config/XY.cfg">here</a>.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>[stepper_x] #A, motor 2
+step_pin: PA10
+dir_pin: PA14
+enable_pin: !PA13
+rotation_distance: 40
+microsteps: 32
+full_steps_per_rotation: 200
+endstop_pin: tmc2240_stepper_x:virtual_endstop
+position_endstop: 120
+position_max: 120
+homing_speed: 80
+homing_retract_dist: 60
+min_home_dist: 40
+homing_positive_dir: true
+use_sensorless_homing: true
+
+[tmc2240 stepper_x]
+cs_pin: PD8
+spi_software_miso_pin: PB14
+spi_software_mosi_pin: PB15
+spi_software_sclk_pin: PB13
+interpolate: True
+run_current: 0.85
+home_current: 0.5
+current_change_dwell_time: 0.2
+rref: 12000
+stealthchop_threshold: 0
+diag0_pin: ^!PD2
+driver_SGT: 1
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <h1 id="updating-your-configuration"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#updating-your-configuration" class="anchor-heading" aria-labelledby="updating-your-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Updating your configuration </h1> <p>Regardless of the choice you made above, with the initial steps behind you, we now have to adjust some existing settings in the configuration file.</p> <p>Note that the examples below are using the 2209 drivers. Adjust the <code class="language-plaintext highlighter-rouge">drivers_</code> line depending on which drivers you actually have!</p> <p>For 2160, 2240, and 5160, use this value instead: <code class="language-plaintext highlighter-rouge">driver_sgt:-64</code></p> <p>The other change will be in the <code class="language-plaintext highlighter-rouge">virtual_endstop</code> value for <code class="language-plaintext highlighter-rouge">endstop_pin</code>:</p> <ul> <li>For 2240, use this value instead: <code class="language-plaintext highlighter-rouge">tmc2240_stepper_?:virtual_endstop</code> where ? is the axis being updated</li> <li>For 2160, and 5160, use this value instead: <code class="language-plaintext highlighter-rouge">tmc5160_stepper_?:virtual_endstop</code> where ? is the axis being updated</li> </ul> <p class="note">You may also need to tweak the <code class="language-plaintext highlighter-rouge">diag_pin</code> property to be either <code class="language-plaintext highlighter-rouge">diag0_pin</code> or <code class="language-plaintext highlighter-rouge">diag1_pin</code>. The examples at the bottom should help you pick which one you need for your particular setup.</p> <h2 id="updating-stepper_x"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#updating-stepper_x" class="anchor-heading" aria-labelledby="updating-stepper_x"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Updating stepper_x </h2> <ol> <li>Locate the <code class="language-plaintext highlighter-rouge">[stepper_x]</code> section</li> <li>Record the current value for <code class="language-plaintext highlighter-rouge">endstop_pin</code> (<strong>PG6</strong> for example)</li> <li><strong>Change</strong> the <code class="language-plaintext highlighter-rouge">endstop_pin</code> to <code class="language-plaintext highlighter-rouge">tmc2209_stepper_x:virtual_endstop</code></li> <li><strong>Change</strong> <code class="language-plaintext highlighter-rouge">homing_speed</code> to <code class="language-plaintext highlighter-rouge">80</code></li> <li><strong>Change</strong> <code class="language-plaintext highlighter-rouge">homing_retract_dist</code> to <code class="language-plaintext highlighter-rouge">0</code></li> <li>Locate the <code class="language-plaintext highlighter-rouge">[tmc2209 stepper_x]</code> section (usually right below where you just edited)</li> <li><strong>Add</strong> <code class="language-plaintext highlighter-rouge">diag_pin</code> to match what you recorded from step 2, but add a ^ before it. Example: <code class="language-plaintext highlighter-rouge">diag_pin: ^PG6</code></li> <li><strong>Add</strong> this below the <code class="language-plaintext highlighter-rouge">diag_pin</code> entry: <code class="language-plaintext highlighter-rouge">driver_SGTHRS: 255</code></li> </ol> <p>For those of you that took the Kalico route above, add these lines below your <code class="language-plaintext highlighter-rouge">run_current</code> property:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>home_current: 0.49
+current_change_dwell_time: 0.2
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <p>The first property sets the current to use when doing sensorless homing. The second property sets how long to wait between adjusing from run current to homing current and vice versa.</p> <h2 id="updating-stepper_y"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#updating-stepper_y" class="anchor-heading" aria-labelledby="updating-stepper_y"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Updating stepper_y </h2> <ol> <li>Locate the <code class="language-plaintext highlighter-rouge">[stepper_y]</code> section</li> <li>Record the current value for <code class="language-plaintext highlighter-rouge">endstop_pin</code> (<strong>PG9</strong> for example)</li> <li><strong>Change</strong> the <code class="language-plaintext highlighter-rouge">endstop_pin</code> to <code class="language-plaintext highlighter-rouge">tmc2209_stepper_y:virtual_endstop</code></li> <li><strong>Change</strong> <code class="language-plaintext highlighter-rouge">homing_speed</code> to <code class="language-plaintext highlighter-rouge">80</code></li> <li><strong>Change</strong> <code class="language-plaintext highlighter-rouge">homing_retract_dist</code> to <code class="language-plaintext highlighter-rouge">0</code></li> <li>Locate the <code class="language-plaintext highlighter-rouge">[tmc2209 stepper_y]</code> section (usually right below where you just edited)</li> <li><strong>Add</strong> <code class="language-plaintext highlighter-rouge">diag_pin</code> to match what you recorded from step 2, but add a ^ before it. Example: <code class="language-plaintext highlighter-rouge">diag_pin: ^PG9</code></li> <li><strong>Add</strong> this below the <code class="language-plaintext highlighter-rouge">diag_pin</code> entry: <code class="language-plaintext highlighter-rouge">driver_SGTHRS: 255</code></li> </ol> <p>For those of you that took the Kalico route above, add this line below your <code class="language-plaintext highlighter-rouge">run_current</code> property:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>home_current: 0.49
+current_change_dwell_time: 0.2
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <p>With those changes complete, save your configuration.</p> <h2 id="other-changes"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#other-changes" class="anchor-heading" aria-labelledby="other-changes"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Other changes </h2> <ol> <li>Move to the top of your <code class="language-plaintext highlighter-rouge">printer.cfg</code>. If not already present, add the following configuration section: <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code> [force_move]
+ enable_force_move: True
+</code></pre></div> <button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> </li> <li>If you went with stock Klipper, add an include for wherever you created your <code class="language-plaintext highlighter-rouge">homing.cfg</code> file. Example: <code class="language-plaintext highlighter-rouge">[include homing.cfg]</code></li> <li>Save your <code class="language-plaintext highlighter-rouge">printer.cfg</code> file and allow Klipper to restart.</li> </ol> <h2 id="finding-the-appropriate-driver-value"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#finding-the-appropriate-driver-value" class="anchor-heading" aria-labelledby="finding-the-appropriate-driver-value"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Finding the appropriate driver value </h2> <p>Recall earlier we set the driver threshold to 255. This is the most sensitive value and will almost certainly NOT work for your use case. We now need to find the appropriate value, or rather, range of values that will work for you.</p> <p>Note that if at any time things seem off, PRESS EMERGENCY STOP.</p> <p>Before you begin, GENTLY and SLOWLY move the print head to approximately 4 inches off of the right rail, and 4 inches from the back rail.</p> <ol> <li>In the console, run the following command to set the active value for the StallGuard driver when using 2209s: <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>  SET_TMC_FIELD FIELD=SGTHRS STEPPER=stepper_x VALUE=255
+</code></pre></div> <button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> </li> </ol> <p>Use this for every other type of driver:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>  SET_TMC_FIELD FIELD=SGT STEPPER=stepper_x VALUE=-63
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <ol> <li>Home X by entering the following command in the console <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>  G28 X
+</code></pre></div> <button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> </li> </ol> <h3 id="stock-klipper-details"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#stock-klipper-details" class="anchor-heading" aria-labelledby="stock-klipper-details"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stock Klipper details </h3> <p>Remember that <strong>force_move</strong> thing you added and the macros in <code class="language-plaintext highlighter-rouge">homing.cfg</code> from earlier? Those are going to now control homing for you. When you <code class="language-plaintext highlighter-rouge">G28 X</code>, it will use the <code class="language-plaintext highlighter-rouge">_HOME_X</code> macro to do so.</p> <p>Let’s take a closer look at what the macro responsible for homing X is doing (Y will work the same way, just with different moves, etc.).</p> <p><strong>NOTE</strong>: The macro is shown below in code blocks. These are <em>not</em> meant to be copy pasted anywhere (we did all the macros above into <code class="language-plaintext highlighter-rouge">homing.cfg</code>) but they are shown here so we can understand what the macros are doing.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>    {% set RUN_CURRENT_X = printer.configfile.settings['tmc2209 stepper_x'].run_current|float %}
+    {% set RUN_CURRENT_Y = printer.configfile.settings['tmc2209 stepper_y'].run_current|float %}
+    {% set HOME_CURRENT = 0.49 %}
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <p>Here we are recording our motor’s run current into variables so we can restore them later, then we set a homing current of 0.49. This helps with stability and finding a sane value for homing.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>    SET_TMC_CURRENT STEPPER=stepper_x CURRENT={HOME_CURRENT}
+    SET_TMC_CURRENT STEPPER=stepper_y CURRENT={HOME_CURRENT}
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <p>Next we set the motors to use our homing current</p> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>    SET_KINEMATIC_POSITION X=15
+    G91
+    G1 X-15 F1200
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <p>Here we force a move away from the toolhead’s current position. We are telling the printer it is currently at X=15 (which may or may not be true), then moving the toolhead 15mm from that position. This ensures that if we are right on the rightmost rail we will move away from it BEFORE we try to home.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>    M400
+    G28 X
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <p>Next we use M400 to clear any commands (including stallguard) in the buffer before we try to home.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>    # Move away
+    G91
+    G1 X-15 F1200
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <p>Once homed, move away from the rail again.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>    SET_TMC_CURRENT STEPPER=stepper_x CURRENT={RUN_CURRENT_X}
+    SET_TMC_CURRENT STEPPER=stepper_y CURRENT={RUN_CURRENT_Y}
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <p>Finally, restore our motor’s run current we captured before.</p> <h3 id="kalico-details"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#kalico-details" class="anchor-heading" aria-labelledby="kalico-details"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Kalico details </h3> <p>Nothing to see here. Kalico manages the process</p> <h2 id="finding-the-right-driver-value"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#finding-the-right-driver-value" class="anchor-heading" aria-labelledby="finding-the-right-driver-value"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Finding the right driver value </h2> <p>When you first start trying to find your value, because of the macro above, it will look like the toolhead is moving away from the right rail, then stopping (for the stock Klipper folks).</p> <p>This is normal and just means the value is still too sensitive to home properly.</p> <p>Early on, I tend to jump down in jumps of 50. At some point you will get X to home all the way to the rail.</p> <p>However, if you went TOO low, it might bump harder into the rail than it should. In this case, ADD half the value you last went down by and repeat steps 1 and 2. For non 2209 people, you would of course be increasing from -64, so adjust accordingly.</p> <p>Eventually you will find the BIGGEST number that homes X successfully. Nice!</p> <p>With the maximum found, continue to DECREASE the value by 5 or so until X homes, but bumps too hard into the rail. You may need to walk this in by changing the value by 1 when getting close.</p> <p>This is your MINIMUM value.</p> <p>Ideally we want a value between the minimum and maximum that will always work, so I tend to shoot for something slightly LESS than halfway between minimum and maximum.</p> <p>Example: If maximum is 113 and minimum is 99, the difference is 14. Half of 14 is 7, so use a value of 99+6, or 105, and repeat steps 1 and 2.</p> <p>If that looks and feels good, you now have the driver value you need to update in your <code class="language-plaintext highlighter-rouge">printer.cfg</code> file’s <code class="language-plaintext highlighter-rouge">[tmc2209 stepper_x]</code> section.</p> <p>With X complete, you how have to do that entire process all over again, but for Y. Here are the two commands:</p> <ol> <li>In the console, run the following command (or <code class="language-plaintext highlighter-rouge">FIELD=SGT</code>, like before) <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>  SET_TMC_FIELD FIELD=SGTHRS STEPPER=stepper_y VALUE=255
+</code></pre></div> <button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> </li> <li>Home Y by entering the following command in the console <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>  G28 Y
+</code></pre></div> <button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> </li> </ol> <p>Now do exactly the same process as you did for X, but this time, focusing on the Y axis. When homing Y, the toolhead will move toward you for the reasons described above, just like we saw when setting up X.</p> <p>Once you find the correct values for X and Y, update those in the appropriate driver section of your config, save and restart, then test! You may have to experiment with your homing current and/or the homing speed to find your sweet spot. Also note that 2209s generally have a wider range of values that work. Most of the other ones are between -1 and 1.</p> <h2 id="some-working-examples"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#some-working-examples" class="anchor-heading" aria-labelledby="some-working-examples"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Some working examples </h2> <p>Note that these examples are just that, examples! Do not just YOLO copy paste stuff. This is more about showing things like the diag pin (1 vs 0), etc.</p> <p>For any aliases shown, either create them, or simply update them with the actual pins, per your preference</p> <h3 id="btt-octopus-pro-10-with-btt2240s"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#btt-octopus-pro-10-with-btt2240s" class="anchor-heading" aria-labelledby="btt-octopus-pro-10-with-btt2240s"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> BTT Octopus Pro 1.0 with BTT2240s </h3> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>[stepper_x]
+step_pin: PF13
+dir_pin: !PF12
+enable_pin: !PF14
+rotation_distance: 40
+microsteps: 32
+full_steps_per_rotation:400  #set to 400 for 0.9 degree stepper
+endstop_pin: tmc2240_stepper_x:virtual_endstop       # Old pin before sensorless homing PG6
+position_min: 0
+
+[stepper_y]
+step_pin: PG0
+dir_pin: !PG1
+enable_pin: !PF15
+rotation_distance: 40
+microsteps: 32
+full_steps_per_rotation:400  #set to 400 for 0.9 degree stepper
+endstop_pin: tmc2240_stepper_y:virtual_endstop     # Old pin before sensorless homing PG9
+position_min: 0
+
+[tmc2240 stepper_x]
+cs_pin: PC4
+spi_software_sclk_pin: PA5
+spi_software_mosi_pin: PA7
+spi_software_miso_pin: PA6
+interpolate: false
+run_current: 0.8
+stealthchop_threshold: 0
+diag0_pin: ^!PG6
+driver_SGT: 0            #Max sensitivity -63
+
+[tmc2240 stepper_y]
+cs_pin: PD11
+spi_software_sclk_pin: PA5
+spi_software_mosi_pin: PA7
+spi_software_miso_pin: PA6
+interpolate: false
+run_current: 0.8
+stealthchop_threshold: 0
+diag0_pin: ^!PG9
+driver_SGT: 1   #Max sensitivity -63
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <h3 id="btt-kraken-with-2160s"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#btt-kraken-with-2160s" class="anchor-heading" aria-labelledby="btt-kraken-with-2160s"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> BTT Kraken with 2160s </h3> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>[stepper_x]
+rotation_distance = 40
+microsteps = 32
+full_steps_per_rotation = 400
+step_pin = X_STEP
+dir_pin = !X_DIR
+enable_pin = !X_ENABLE
+endstop_pin = tmc5160_stepper_x:virtual_endstop
+homing_speed = 80
+homing_retract_dist = 0
+position_min = 0
+position_max = 350
+position_endstop = 350
+
+
+[stepper_y]
+rotation_distance = 40
+microsteps = 32
+full_steps_per_rotation = 400
+step_pin = Y_STEP
+dir_pin = !Y_DIR
+enable_pin = !Y_ENABLE
+endstop_pin = tmc5160_stepper_y:virtual_endstop
+homing_speed = 80
+homing_retract_dist = 0
+position_min = 0
+position_max = 350
+position_endstop = 350
+
+[tmc5160 stepper_x]
+cs_pin = X_TMCUART
+spi_software_sclk_pin = DRIVER_SPI_SCK
+spi_software_mosi_pin = DRIVER_SPI_MOSI
+spi_software_miso_pin = DRIVER_SPI_MISO
+interpolate = True
+run_current = 1
+sense_resistor = 0.022
+stealthchop_threshold = 0
+driver_sgt = -1
+diag1_pin = ^!X_STOP
+
+[tmc5160 stepper_y]
+cs_pin = Y_TMCUART
+spi_software_sclk_pin = DRIVER_SPI_SCK
+spi_software_mosi_pin = DRIVER_SPI_MOSI
+spi_software_miso_pin = DRIVER_SPI_MISO
+interpolate = True
+run_current = 1
+sense_resistor = 0.022
+stealthchop_threshold = 0
+driver_sgt = -1
+diag1_pin = ^!Y_STOP
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <h3 id="btt-octopus-11-with-2209s"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#btt-octopus-11-with-2209s" class="anchor-heading" aria-labelledby="btt-octopus-11-with-2209s"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> BTT Octopus 1.1 with 2209s </h3> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>[stepper_x]
+step_pin: X_STEP
+dir_pin: X_DIR
+enable_pin: !X_ENABLE
+rotation_distance: 40
+microsteps: 32
+full_steps_per_rotation:400
+endstop_pin: tmc2209_stepper_x:virtual_endstop #X_STOP
+position_min: 0
+position_endstop: 350
+position_max: 350
+homing_speed: 40 #50
+homing_retract_dist: 0
+homing_positive_dir: true
+
+[tmc2209 stepper_x]
+uart_pin: X_TMCUART
+interpolate: False
+run_current: 1
+sense_resistor: 0.110
+stealthchop_threshold: 0 #always on, 0 is off
+diag_pin: ^X_STOP # use the same pin that was previously the endstop_pin!
+driver_SGTHRS: 125
+
+[stepper_y]
+step_pin: Y_STEP
+dir_pin: Y_DIR
+enable_pin: !Y_ENABLE
+rotation_distance: 40
+microsteps: 32
+full_steps_per_rotation:400
+endstop_pin: tmc2209_stepper_y:virtual_endstop #Y_STOP
+position_min: 0
+position_endstop: 350
+position_max: 350
+homing_speed: 40 #50
+homing_retract_dist: 0
+homing_positive_dir: true
+
+[tmc2209 stepper_y]
+uart_pin: Y_TMCUART
+interpolate: False
+run_current: 1
+sense_resistor: 0.110
+stealthchop_threshold: 0
+diag_pin: ^Y_STOP     # use the same pin that was previously the endstop_pin!
+driver_SGTHRS: 125 # 255 is most sensitive value, 0 is least sensitive
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <h3 id="manta-m8p-v11-with-btt-5160-pros"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#manta-m8p-v11-with-btt-5160-pros" class="anchor-heading" aria-labelledby="manta-m8p-v11-with-btt-5160-pros"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Manta M8P v1.1 with BTT 5160 PROs </h3> <p>Note that this example uses Kalico, (use_sensorless_homing: True, home_current: 0.4, etc), so some of those parameters will not exist/be valid if not using Kalico</p> <div class="language-plaintext highlighter-rouge"><div class="highlight" tabindex="0"><pre class="highlight"><code>[stepper_x]
+step_pin: PE2
+dir_pin: !PB4
+enable_pin: !PC11
+microsteps: 32
+rotation_distance: 40
+#endstop_pin: ^PF3
+endstop_pin: tmc5160_stepper_x:virtual_endstop
+position_endstop: 250
+position_min: 0
+position_max: 250
+homing_speed: 100
+homing_retract_dist: 5
+homing_retract_speed: 20
+min_home_dist: 20
+use_sensorless_homing: True
+full_steps_per_rotation: 400
+
+[tmc5160 stepper_x]
+cs_pin: PC10
+run_current: 1.0
+spi_software_sclk_pin: PA5
+spi_software_mosi_pin: PA7
+spi_software_miso_pin: PA6
+home_current: 0.4
+diag1_pin: ^!PF3
+driver_SGT: 1
+
+[stepper_y]
+step_pin: PF12
+dir_pin: !PF11
+enable_pin: !PB3
+microsteps: 32
+rotation_distance: 40
+#endstop_pin: ^PF4
+endstop_pin: tmc5160_stepper_y:virtual_endstop
+position_endstop: 260
+position_min: 0
+position_max: 260
+homing_speed: 100
+homing_retract_dist: 5
+homing_retract_speed: 20
+min_home_dist: 20
+use_sensorless_homing: True
+full_steps_per_rotation: 400
+
+[tmc5160 stepper_y]
+cs_pin: PF13
+run_current: 1.0
+spi_software_sclk_pin: PA5
+spi_software_mosi_pin: PA7
+spi_software_miso_pin: PA6
+home_current: 0.4
+diag1_pin: ^!PF4
+driver_SGT: 1
+
+</code></pre></div><button type="button" aria-label="Copy code to clipboard"><svg viewBox="0 0 24 24" class="copy-icon"><use xlink:href="#svg-copy"></use></svg></button></div> <h2 id="now-what"> <a href="https://docs.vorondesign.com/tuning/sensorless.html#now-what" class="anchor-heading" aria-labelledby="now-what"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Now what? </h2> <p>Thats it! Once you find your StallGuard values for X and Y and update them in your <code class="language-plaintext highlighter-rouge">printer.cfg</code>, save and restart, then try homing each axis again. In some cases you will find that your values are not quite right.</p> <p>In those cases, simply adjust the values up or down by 1 (depending on if its hitting to hard, or not homing all the way) then save, restart, and test again. Do not forget you can also experiment with homing speed (between 80 and 120 is usually where people end up) and homing current.</p> <p>Eventually you will find that sweet spot.</p> <p>Enjoy!</p> </main> <hr> <footer> <div class="d-md-none"> <div class="mt-4 fs-2"> This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll. </div> </div> </footer> </div> </div> <div class="search-overlay"></div> </div> <script type="module"> import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.2.4/dist/mermaid.esm.min.mjs'; var config = {} ; mermaid.initialize(config); mermaid.run({ querySelector: '.language-mermaid', }); </script>  
+</body></html>

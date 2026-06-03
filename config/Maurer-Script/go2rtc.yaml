@@ -1,0 +1,16 @@
+streams:
+  k1c:
+    # CCX2F3299 USB UVC — /dev/video4
+    # Formatos confirmados: MJPG (hw), YUYV, NV12
+    # Resoluções MJPG: 1920x1080, 1280x960, 1280x720, 800x600, 640x480, 640x360 (max 30fps)
+    - "v4l2:device?video=/dev/video4&input_format=mjpeg&video_size=1280x960&framerate=15"
+
+api:
+  listen: ":1984"
+  origin: "*"
+
+rtsp:
+  listen: ":8554"
+
+webrtc:
+  listen: ":8555"
